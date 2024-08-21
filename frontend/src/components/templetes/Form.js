@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Container,Box, Typography,TextField,InputLabel,Select,MenuItem,RadioGroup,FormControlLabel,Radio,FormLabel,Button } from '@mui/material';
+import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
+
 
 const Form = () => {
     const [form, setForm] = useState({
@@ -27,75 +30,83 @@ const Form = () => {
     };
 
     return (
-        <>
-            <form>
-                <label htmlFor="name">
-                    名前
-                    <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        onChange={handleInputChange}
-                    />
-                </label>
+        <Container>
+            <Box sx={{ 
+                marginTop:1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                }}
+            >
+                <Typography variant="h4">アンケートフォーム</Typography>
                 <br />
-                <label htmlFor="age">
-                    年齢
-                    <select
-                        name="age"
-                        id="age"
-                        value={form.age}
-                        onChange={handleInputChange}
-                    >
-                        <option value="10">10代</option>
-                        <option value="20">20代</option>
-                        <option value="30">30代</option>
-                        <option value="40">40代</option>
-                        <option value="50">50代</option>
-                        <option value="60">60代以上</option>
-                    </select>
-                </label>
+                <TextField
+                    id="name"
+                    label="名前"
+                    name="name"
+                    variant='outlined'
+                    value={form.name}
+                    onChange={handleInputChange}
+                    fullWidth
+                />
                 <br />
-                <label>性別</label>
+                <InputLabel id="demo-simple-select-label">年齢</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={form.age}
+                    name="age"
+                    onChange={handleInputChange}
+                    fullWidth
+                >
+                    <MenuItem value={10}>10代</MenuItem>
+                    <MenuItem value={20}>20代</MenuItem>
+                    <MenuItem value={30}>30代</MenuItem>
+                    <MenuItem value={40}>40代</MenuItem>
+                    <MenuItem value={50}>50代</MenuItem>
+                    <MenuItem value={60}>60代以上</MenuItem>
+                </Select>
                 <br />
-                <label htmlFor="male">
-                    <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        value="男性"
-                        checked={form.gender === "男性"}
-                        onChange={handleInputChange}
-                    />
-                    男性
-                </label>
+                <FormLabel id="demo-radio-buttons-group-label">性別</FormLabel>
+                <Box sx={{ border: 1,
+                    borderRadius: 1,
+                    borderColor: 'grey.500',
+                    padding: 1,
+                    marginTop: 1,
+                    marginBottom: 1,
+                    width: '100%',
+                }}>
+                <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="female"
+                    name="gender"
+                    onChange={handleInputChange}
+                    fullWidth
+                >
+                    <FormControlLabel value="female" control={<Radio />} label="女性" />
+                    <FormControlLabel value="male" control={<Radio />} label="男性" />
+                    <FormControlLabel value="other" control={<Radio />} label="その他" />
+                </RadioGroup>
+                </Box>
                 <br />
-                <label htmlFor="female">
-                    <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        value="女性"
-                        checked={form.gender === "女性"}
-                        onChange={handleInputChange}
-                    />
-                    女性
-                </label>
+                <TextField 
+                    id="outlined-basic" 
+                    label="コメント" 
+                    variant="outlined" 
+                    onChange={handleInputChange} 
+                    value={form.comment}
+                    fullWidth
+                    sx={{ mt: 2}}
+                />
                 <br />
-                <label htmlFor="comment">
-                    コメント
-                    <textarea
-                        id="comment"
-                        name="comment"
-                        placeholder='コメントを入力してください'
-                        value={form.comment}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <button onClick={handleSubmit}>送信</button>
-            </form>
-        </>
+                <Button 
+                    variant="contained" 
+                    onClick={handleSubmit}
+                    endIcon={<ForwardToInboxIcon />}
+                    fullWidth>
+                送信</Button>
+            </Box>
+        </Container>
     );
 };
 
