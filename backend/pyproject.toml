@@ -12,6 +12,9 @@ uvicorn = "^0.30.6"
 numpy = "^2.0.1"
 pandas = "^2.2.2"
 scikit-learn = "^1.5.1"
+salesforce-lavis = "^1.0.2"
+pydantic = "^2.8.2"
+pytest = "^8.3.2"
 
 
 [build-system]
